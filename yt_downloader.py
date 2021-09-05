@@ -14,12 +14,19 @@ class Audio:
         
         #Change to chosen file type and new directory
         NewAudioFileName = str("".join(AudioFileName.split(" "))[:-3])+self.filetype
+        
+        #Check output directory exist or not, if not, we will create it
+        if(os.path.exists(os.getcwd()+"\\output") == False):
+            os.mkdir("output")
+        else:
+            pass
         NewAudioFullPath = os.getcwd()+"\\output\\"+str(NewAudioFileName)
+        
         
         #Transform to your chosen file
         preTransform = AudioFileClip(AudioFullPath)
         preTransform.write_audiofile(NewAudioFullPath)
-        
+        os.remove(AudioFullPath)
         print(NewAudioFullPath)
 
 class Downloader:
